@@ -20,5 +20,8 @@
    <modules>
    	<module>springboot-samples-configuration</module>
    	<module>springboot-samples-devtools</module>
+   	
+   	
+   	<module>springboot-samples-springApplication</module>
    </modules>
 </project>
