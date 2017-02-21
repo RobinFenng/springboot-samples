@@ -116,6 +116,9 @@ A running remote client will look like this:
 
 
 
+**ps1: 如果你使用sts作为IDE的话，右键会有一个Spring DevTools Client的选项，然后填入你的服务端的地址和在服务端配置的密码即可。**
+
+
 **注**：因为远程客户端和实际应用使用相同的classpath,所以应用可以直接读取application properties.这也是为什么`spring.devtools.remote.secret` 属性会被读取到，并且通过服务端的验证.
 
 **注**：通常建议你使用**https**,这样会在通信中会被加密，密码不会被拦截到.
