@@ -19,5 +19,6 @@
 </dependencies>
    <modules>
    	<module>springboot-samples-configuration</module>
+   	<module>springboot-samples-devtools</module>
    </modules>
 </project>
