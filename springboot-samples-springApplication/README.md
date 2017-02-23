@@ -27,7 +27,7 @@ SpringApplication提供了一个便捷的启动spring应用的方法，那就是
 
 通常默认会打出`INFO`级别的日志，包括一些重要的启动信息
 
-## Startup failure ##
+## 启动失败 ##
 
 
 
@@ -62,3 +62,32 @@ SpringApplication提供了一个便捷的启动spring应用的方法，那就是
 
 
 示例：`https://github.com/RobinFenng/springboot-samples/tree/master/springboot-samples-springApplication`
+
+
+## 自定义Banner ##
+
+
+你可以在classpath中添加一个banner.txt文件或设置banner.location属性去修改启动时打印出来的banner。如果你的文件是不同编码的，你可以设置banner.charset属性（默认为UTF-8）.不仅仅是文本文件，你也可以添加一个banner.gif，banner.jpg or banner.png 图片文件到你的classpath中，或者设置banner.image.location属性.图片文件会被转换为ASCII后被呈现出来。
+
+## 自定义SpringApplication ##
+
+
+
+如果默认的SpringApplication不适合你的应用，你可以自定义一个本地的实例去替代，例如你想关闭banner,你可以这样：
+
+	public static void main(String[] args) {
+	    SpringApplication app = new SpringApplication(MySpringConfiguration.class);
+	    app.setBannerMode(Banner.Mode.OFF);
+	    app.run(args);
+	}
+
+
+
+
+**注**：传入到SpringApplication构造函数中的参数应当是一个spring beans中的配置类（？），大多数是加了`@Configuration`的配置类，但是也可以是配置在XML中的配置类或者可以被扫描到的配置类
+
+用一个`application.properties`文件来配置这些信息也是可以的。
+
+[这里](http://docs.spring.io/spring-boot/docs/1.5.1.RELEASE/api/org/springframework/boot/SpringApplication.html "SpringApplication")有一份完整的配置列表
+
+
