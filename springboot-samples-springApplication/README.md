@@ -29,7 +29,7 @@ SpringApplication提供了一个便捷的启动spring应用的方法，那就是
 
 ## Startup failure ##
 
-:
+
 
 如果你的应用启动失败，注册`FailureAnalyzers`你就会看到一个详细的报错信息以及修正的方法。例如：如果你使用8080端口启动你的应用，并且8080端口已经被占用了，你就能看到如下信息：
 
@@ -57,3 +57,5 @@ SpringApplication提供了一个便捷的启动spring应用的方法，那就是
 2. 继承`AbstractFailureAnalyzer`类，自定义一个`exception`。
 3. 在`resources/META-INF/spring.factories`中添加`org.springframework.boot.diagnostics.FailureAnalyzer=com.moregx.analyzers.CustomerFailureAnalyzer`
 
+
+示例：`https://github.com/RobinFenng/springboot-samples/tree/master/springboot-samples-springApplication`
