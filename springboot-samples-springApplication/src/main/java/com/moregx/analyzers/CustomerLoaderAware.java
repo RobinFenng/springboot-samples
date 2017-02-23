@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import com.moregx.exception.CustomerException;
 
-@Component
 public class CustomerLoaderAware
 implements BeanClassLoaderAware, EnvironmentAware, InitializingBean{
 
