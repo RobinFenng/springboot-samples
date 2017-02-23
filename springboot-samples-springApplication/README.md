@@ -50,8 +50,11 @@ SpringApplication提供了一个便捷的启动spring应用的方法，那就是
 
 **注**：Spring Boot已经提供了几个FailureAnalyzer实现，并且你也可以很随意的添加你自己的实现。
 
+**以上为官方文档翻译内容**
 
-**注：**
+
+
+**ps:**
 
 1. `FailureAnalyzer`仅限于应用启动时提示。
 2. 继承`AbstractFailureAnalyzer`类，自定义一个`exception`。
