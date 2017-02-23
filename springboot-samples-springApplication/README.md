@@ -54,7 +54,7 @@ SpringApplication提供了一个便捷的启动spring应用的方法，那就是
 
 
 
-**ps:**
+**tips:**
 
 1. `FailureAnalyzer`仅限于应用启动时提示。
 2. 继承`AbstractFailureAnalyzer`类，自定义一个`exception`。
