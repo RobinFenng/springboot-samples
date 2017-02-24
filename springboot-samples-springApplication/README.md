@@ -96,9 +96,7 @@ SpringApplication提供了一个便捷的启动spring应用的方法，那就是
 
 除了像`ContextRefreshedEvent`这些spring通常的events，SpringApplication还提供了一些额外的events。
 
-Some events are actually triggered before the ApplicationContext is created so you cannot register a listener on those as a @Bean. You can register them via the SpringApplication.addListeners(…​) or SpringApplicationBuilder.listeners(…​) methods.
-If you want those listeners to be registered automatically regardless of the way the application is created you can add a META-INF/spring.factories file to your project and reference your listener(s) using the org.springframework.context.ApplicationListener key.
-org.springframework.context.ApplicationListener=com.example.project.MyListener
+
 
 因为一些events在ApplicationContext创建之前被触发，所有你为他们注册一个监听。你可以使用`SpringApplication.addListener（）` 或者`SpringApplicationBuilder.listeners(…​)`去注册他们。
 如果你想在各种情况下都自动注册这些监听的话， 你可以建一个 `META-INF/spring.factories`文件，然后设置
@@ -135,7 +133,7 @@ SpringApplication会为你创建一个正确类型的ApplicationContext，通常
 
 ##获取application参数##
 
-If you need to access the application arguments that were passed to SpringApplication.run(…​) you can inject a org.springframework.boot.ApplicationArguments bean. The ApplicationArguments interface provides access to both the raw String[] arguments as well as parsed option and non-option arguments:
+
 
 如果你想获取通过`SpringApplication.run(…​)`启动的应用的参数，你可以注入一个`org.springframework.boot.ApplicationArguments`bean.ApplicationArguments接口提供了访问原始的String[]参数解析选项以及非选项参数：
 
@@ -160,9 +158,7 @@ If you need to access the application arguments that were passed to SpringApplic
 
 ## 使用ApplicationRunner或CommandLineRunner ##
 
-If you need to run some specific code once the SpringApplication has started, you can implement the ApplicationRunner or CommandLineRunner interfaces. Both interfaces work in the same way and offer a single run method which will be called just before SpringApplication.run(…​) completes.
 
-The CommandLineRunner interfaces provides access to application arguments as a simple string array, whereas the ApplicationRunner uses the ApplicationArguments interface discussed above.
 
 当SpringApplication启动之后，如果你想运行一些代码，你可以实现ApplicationRunner或CommandLineRunner接口.这两个接口都会提供一个方法运行在`SpringApplication.run(…​) `完全运行之前。
 
@@ -205,3 +201,35 @@ ApplicationRunner：
 
 
 此外，如果你用多个CommandLineRunner或ApplicationRunner的bean,并且要有先后顺序的话，你可以实现`org.springframework.core.Ordered`或使用`org.springframework.core.annotation.Order` 注解
+
+
+
+## Application exit ##
+
+
+每个SpringApplication都会在JVM里注册一个钩子，以确保ApplicationContext优雅的退出。所有标准的Spring生命回调（如：DisposableBean接口和@PreDestroy注解）都会被使用到。
+
+## Admin features ##
+
+通过设置`spring.application.admin.enabled`属性，就可以开启admin-related特性。SpringApplicationAdminMXBean会暴露在MBeanServer上，你可以运用这个特性去管理你的Spring Boot应用。这个可能对于任何一个服务都是有用的。
+
+**注**：如果你想查看http的端口，你可以使用`local.server.port`属性。
+
+**注**：当你开启开启这个特性时，要注意`shutdown`方法。
+
+Mbean的查看方法：
+
+1. 在控制台输入`jconsole`，启动jvm自带的控制台。
+2. 选择你的应用。
+3. 选择到MBean tab。
+4. 查看`org.springframework.boot.Admin.SpringApplication`。
+
+你也可以自己定义MBean,只需实现`SpringApplicationAdminMXBean`即可，查看方法如上。
+
+**注**：
+
+
+1. 当设置`spring.application.admin.enabled=ture`时，你可以查到`org.springframework.boot.Admin.SpringApplication`，通过`getProperty()`方法,你可以查到`application.properties`中的配置信息。
+2. 当设置`spring.application.admin.enabled=false`时,将不会查到`org.springframework.boot.Admin.SpringApplication`。
+3. 无论`spring.application.admin.enabled`等于什么，都能查到自定义的`SpringApplicationAdminMXBean`
+

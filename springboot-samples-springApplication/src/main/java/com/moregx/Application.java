@@ -1,5 +1,8 @@
 package com.moregx;
 
+import javax.management.MBeanServer;
+import javax.management.MBeanServerFactory;
+
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +19,7 @@ public class Application {
 //		app.setBannerMode(Banner.Mode.OFF);
 //		app.run(args);
 		 
+		// MBeanServer mBeanServer =  MBeanServerFactory.createMBeanServer();
 		
 	}
 
