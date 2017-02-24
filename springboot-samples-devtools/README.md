@@ -1,6 +1,5 @@
 ## Developer tools ##
 
-Spring Boot includes an additional set of tools that can make the application development experience a little more pleasant. The spring-boot-devtools module can be included in any project to provide additional development-time features. To include devtools support, simply add the module dependency to your build:
 
 Spring Boot为了让你写代码的时候更爽一点提供了一系列的工具.在你的开发任何项目的时候,你都可以引入`spring-boot-devtools`模块.引入`spring-boot-devtools`模块很简单:
 
@@ -32,9 +31,6 @@ Spring Boot为提高效率提供了若干个缓存的工具包.比如:模板引�
 当在`classpath`上的文件被修改时,`spring-boot-devtools`会重启你的应用.当你在使用IDE开发的时候，这个功能是一个很有效的,因为它会对你的修改进行及时的反馈.因为在`classpath`上的任意文件被修改都会被监测到,所以我们排除那些无需重启的静态文件.
 
 ### Excluding resources ###
-
-Certain resources don’t necessarily need to trigger a restart when they are changed. For example, Thymeleaf templates can just be edited in-place. By default changing resources in /META-INF/maven, /META-INF/resources ,/resources ,/static ,/public or /templates will not trigger a restart but will trigger a live reload. If you want to customize these exclusions you can use the spring.devtools.restart.exclude property. For example, to exclude only /static and /public you would set the following:
-
 
 在我们的开发过程中,肯定会有一些修改之后不需要重启的文件.比如，Thymeleaf模版被修改.默认在`/META-INF/maven`, `/META-INF/resources` ,`/resources` ,`/static` ,`/public` or `/templates`的文件被修改的话,只会重新加载而不会重启.如果你想设置在某个目录的修改不触发重启的话,你可以使用`spring.devtools.restart.exclude `属性.例如，你想在目录`/static`和`/public`下的修改不触发重启的话，你可以如下配置：
 
@@ -135,3 +131,5 @@ A running remote client will look like this:
 
 **注**：只会监控到正在运行的应用的文件修改.如果你改了一个文件，然后启动文件，就会上传到服务端.
 
+
+示例地址：[https://github.com/RobinFenng/springboot-samples/tree/master/springboot-samples-devtools](https://github.com/RobinFenng/springboot-samples/tree/master/springboot-samples-devtools "spring boot Developer tools")
