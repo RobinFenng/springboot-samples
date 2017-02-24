@@ -1,7 +1,5 @@
 #SpringApplication#
 
-
-
 SpringApplication提供了一个便捷的启动spring应用的方法，那就是从`main`方法开始.在大多数情况下，你只需要调用`SpringApplication.run`方法即可。如下：
 
 	public static void main(String[] args) {
@@ -233,3 +231,4 @@ Mbean的查看方法：
 2. 当设置`spring.application.admin.enabled=false`时,将不会查到`org.springframework.boot.Admin.SpringApplication`。
 3. 无论`spring.application.admin.enabled`等于什么，都能查到自定义的`SpringApplicationAdminMXBean`
 
+DEMO URL:[https://github.com/RobinFenng/springboot-samples/tree/master/springboot-samples-springApplication](https://github.com/RobinFenng/springboot-samples/tree/master/springboot-samples-springApplication "SpringApplication实例")
