@@ -23,5 +23,7 @@
    	
    	
    	<module>springboot-samples-springApplication</module>
+   	
+   	<module>springboot-samples-externalizedConfiguration</module>
    </modules>
 </project>
