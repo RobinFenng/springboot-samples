@@ -14,7 +14,7 @@ public class TestController {
 	User user;
 	
 	@RequestMapping("getName")
-	String getName(){
+	public String getName(){
 		
 		return user.getName();
 	}
