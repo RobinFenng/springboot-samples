@@ -61,10 +61,37 @@ To provide a concrete example, suppose you develop a @Component that uses a name
 1. `~/.spring-boot-devtools.properties` 指的是在`C:\Users\yourName` 下添加`.spring-boot-devtools.properties`文件,‘**.**’很重要。
 2. 测试用例中` @TestPropertySource` 注解的properties的值。
 3. 测试用例中`@SpringBootTest`注解的properties的值。
-4. 使用命令行进行赋值,如：java -jar app.jar --name="name in command level 4"
-5. 
-    
+4. 使用命令行进行赋值,如：`java -jar app.jar --name="name in command level 4`"
+5. 内联在环境变量或系统参数中的`SPRING_APPLICATION_JSON`属性。
+6. ServletConfig参数 ？
+7. 在application.properties中配置`ServletContext`初始化参数`server.context-parameters.name : name in ServletContext init parameter level 7`
+8. JNDI ？
+9. java 系统变量 `System.setProperty("name", "name in Java System properties  level 9");`
+10. 系统环境变量 ？
+11. `RandomValuePropertySource` ？
+12. 打包在应用外明确环境的配置文件的配置信息。`java -jar -Dspring.config.location=D:\application-test.properties app.jar`
+13. 打包在应用内明确环境的配置文件的配置信息。
+14. 打包在应用外的application.properties配置，使用命令`java -jar -Dspring.config.location=D:\application.properties app.jar` 启动应用。
+15. 打包在应用中的application.properties的配置。
+16. 在配置类上的PropertySource注解指向的配置。
+17. `SpringApplication.setDefaultProperties`设置默认值。
 
 
-  
+
+##配置随机值##
+
+
+
+RandomValuePropertySource对注入随机值是很有效的（比如设置密码或用户测试）. 可以提供 integers, longs, uuids or strings类型，例如：
+
+	my.secret=${random.value}
+	my.number=${random.int}
+	my.bignumber=${random.long}
+	my.uuid=${random.uuid}
+	my.number.less.than.ten=${random.int(10)}
+	my.number.in.range=${random.int[1024,65536]}
+
+random.int*语法是OPEN value (,max) CLOSE，此处OPEN，CLOSE可以是任何字符，并且value，max是整数。如果提供max，那么value是最小的值，max是最大的值（不包含在内）。
+
+
 
