@@ -440,7 +440,6 @@ assume a MyPojo object with name and description attributes that are null by def
 
 
 
-Even if the configuration above will create a regular bean for FooProperties, we recommend that @ConfigurationProperties only deal with the environment and in particular does not inject other beans from the context. Having said that, The @EnableConfigurationProperties annotation is also automatically applied to your project so that any existing bean annotated with @ConfigurationProperties will be configured from the Environment. You could shortcut MyConfiguration above by making sure FooProperties is a already a bean:
 
 
 即使这个configuration将会为FooProperties创建一个正常的bean,我们也建议 `@ConfigurationProperties`只处理环境的问题，特别是从上下文中不注入其他bean的时候.话虽如此，@EnableConfigurationProperties注解也会自动用于项目以确保任何被@ConfigurationProperties注解的bean都会被环境配置。
@@ -457,7 +456,7 @@ Even if the configuration above will create a regular bean for FooProperties, we
 
 ### 第三方配置 ###
 
-As well as using @ConfigurationProperties to annotate a class, you can also use it on public @Bean methods. This can be particularly useful when you want to bind properties to third-party components that are outside of your control.
+
 
 像把@ConfigurationProperties注解到一个类上一样，你也可以在@Bean方法上使用它。。当你需要绑定属性到不受你控制的第三方组件时，这种方式非常有用。
 
@@ -471,9 +470,8 @@ As well as using @ConfigurationProperties to annotate a class, you can also use 
 
 所有以`bar`开头的属性都会被映射到BarComponent上
 
-### 松散的绑定 ###
+### 松散绑定 ###
 
-Spring Boot uses some relaxed rules for binding Environment properties to @ConfigurationProperties beans, so there doesn’t need to be an exact match between the Environment property name and the bean property name. Common examples where this is useful include dashed separated (e.g. context-path binds to contextPath), and capitalized (e.g. PORT binds to port) environment properties.
 
 
 Spring Boot使用了一些松散的规则用于把环境属性绑定到`@ConfigurationProperties`上，所以不需要精确字符匹配环境属性名称和bean属性名称.在使用虚线分割和大小写的时候是很用的。
@@ -505,5 +503,73 @@ Spring Boot使用了一些松散的规则用于把环境属性绑定到`@Configu
 
 
 
-### 属性转换 ## 
+### 属性转换 ###
 
+
+当绑定 @ConfigurationProperties bean的时候，Spring会尝试转换属性为正确的类型。如果你需要定制化类型，你要提供一个ConversionService bean或者一个通过CustomEditorConfigurer bean提供一个自定义属性编辑，或者自定义转换器。
+
+### @ConfigurationProperties 校验 ###
+
+
+Spring Boot会对加上 @Validated 注解的 @ConfigurationProperties的类做校验。默认使用JSR-303，你可以轻松的为你的@ConfigurationProperties类添加JSR-303 javax.validation约束注解：
+
+
+	@ConfigurationProperties(prefix="foo")
+	@Validated
+	public class FooProperties {
+	
+	    @NotNull
+	    private InetAddress remoteAddress;
+	
+	    // ... getters and setters
+	
+	}
+
+
+In order to validate values of nested properties, you must annotate the associated field as @Valid to trigger its validation. For example, building upon the above FooProperties example:
+
+如果校验嵌套属性的话，你要在字段加 @Valid，例如上面那个例子:
+
+	@ConfigurationProperties(prefix="foo")
+	@Validated
+	public class FooProperties {
+	
+	    @NotNull
+	    private InetAddress remoteAddress;
+	
+	    @Valid
+	    private final Security security = new Security();
+	
+	    // ... getters and setters
+	
+	    public static class Security {
+	
+	        @NotEmpty
+	        public String username;
+	
+	        // ... getters and setters
+	
+	    }
+	
+	}
+
+
+### @ConfigurationProperties 和 @Value 的对比###
+
+	特性					@ConfigurationProperties		  		@Value 	
+
+	松散绑定					支持									不支持
+	
+	Meta-data support		   支持									支持
+
+	SpEL表达式				     不支持								 支持
+
+
+
+
+如果你在你的组件里定义了多个configuration key,我们建议你把他们放到一个`@ConfigurationProperties `POJO对象里面。因为@Value不支持relaxed binding，所有当你使用环境变量的时候，@Value并不是一个好的选择。
+
+
+最后，当你在@Value写一个SpEL表达式的时候，这些表达式不是从Application file里处理的。
+
+	
