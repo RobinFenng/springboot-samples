@@ -25,5 +25,6 @@
    	<module>springboot-samples-springApplication</module>
    	
    	<module>springboot-samples-externalizedConfiguration</module>
+   	<module>springboot-samples-typesafe</module>
    </modules>
 </project>
