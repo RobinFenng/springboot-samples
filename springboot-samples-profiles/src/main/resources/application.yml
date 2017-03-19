@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: banana,apple
+    
+fruit:
+  color: green
+  name: fruit
+---
+spring:
+  profiles: apple
+ 
+fruit:
+  name: apple
+  color: red
+  
+---
+spring:
+  profiles: banana
+  
+fruit:
+  color: yellow
+  name: banana
+  
+  
+
+ 
+ 
