@@ -20,11 +20,9 @@
    <modules>
    	<module>springboot-samples-configuration</module>
    	<module>springboot-samples-devtools</module>
-   	
-   	
    	<module>springboot-samples-springApplication</module>
-   	
    	<module>springboot-samples-externalizedConfiguration</module>
    	<module>springboot-samples-typesafe</module>
+   	<module>springboot-samples-application-YAML</module>
    </modules>
 </project>

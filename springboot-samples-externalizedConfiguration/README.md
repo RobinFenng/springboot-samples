@@ -128,7 +128,7 @@ SpringApplication会从以下位置按照次序加载application.properties中�
 
 
 
-如果spring.config.location contains包含目录(而不是文件)，那他们应该以/结尾，（在加载前，spring.config.name产生的名称将被追加到后面）。Files specified in spring.config.location are used as-is, with no support for profile-specific variants, and will be overridden by any profile-specific properties.？
+如果spring.config.location contains包含目录(而不是文件),那他们应该以/结尾，（在加载前，spring.config.name产生的名称将被追加到后面）。Files specified in spring.config.location are used as-is, with no support for profile-specific variants, and will be overridden by any profile-specific properties.？
 
 
 无论spring.config.location设置什么值，它默认会搜索`classpath:,classpath:/config,file:,file:config/ `目录.搜索目录是从低到高排序的（`file:config/` 优先），如果你想指定你自己的目录优先于默认的加载目录，你可以在`application.properties`中设置一个默认值，然后在运行的时候使用不同的文件覆盖它，同时保留默认配置。
@@ -556,13 +556,13 @@ In order to validate values of nested properties, you must annotate the associat
 
 ### @ConfigurationProperties 和 @Value 的对比###
 
-	特性					@ConfigurationProperties		  		@Value 	
+	特性					@ConfigurationProperties		  		  @Value 	
 
 	松散绑定					支持									不支持
 	
 	Meta-data support		   支持									支持
 
-	SpEL表达式				     不支持								 支持
+	SpEL表达式				    不支持								     支持
 
 
 

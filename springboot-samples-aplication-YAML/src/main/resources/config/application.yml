@@ -1,0 +1,10 @@
+spring:
+  profiles: uat
+ 
+foo:
+  name: uatName
+  list:
+    - name: uatPOJOName
+      description: uatPOJODesc
+    - name: uatPOJOName2
+      description: uatPOJODesc2

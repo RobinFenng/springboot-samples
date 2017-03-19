@@ -1,0 +1,28 @@
+server:  
+  port: 8082  
+ 
+spring:  
+  profiles:  
+    active: uat 
+  
+---  
+# 开发环境配置  
+spring:  
+  profiles: dev  
+
+foo:
+  name: devName
+  list:
+    - name: devPOJOName
+      description: devPOJOdesc
+    
+---  
+# 测试环境配置  
+spring:  
+  profiles: test  
+foo:
+  name: testName
+  list:
+    - name: testPOJOName
+      description: testPOJOdesc
+    
