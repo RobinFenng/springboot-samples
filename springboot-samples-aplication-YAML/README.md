@@ -4,7 +4,7 @@
 ----------
 
 
-## Application属性文件##
+
 
 
 SpringApplication会从以下位置按照次序加载application.properties中的属性加载到Spring环境中：
