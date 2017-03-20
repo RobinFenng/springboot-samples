@@ -24,5 +24,6 @@
    	<module>springboot-samples-externalizedConfiguration</module>
    	<module>springboot-samples-typesafe</module>
    	<module>springboot-samples-application-YAML</module>
+   	<module>spring-samples-log</module>
    </modules>
 </project>
