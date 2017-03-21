@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true" scan="true" scanPeriod="30 seconds">
 
+     <!-- 读取spring配置信息 --> 
+     <springProperty scope="context" name="attr" source="my.logback.attr" defaultValue="${LOG_PATH}"/>
+     
      <property name="PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} [%level] [%class:%line] - %m %n" /> 
-     <property name="FILE_PATH" value="${LOG_PATH}/root/root.log" />   
-     <property name="SERVICE_FILE_PATH" value="${LOG_PATH}/service/service.log" />  
-     <property name="HTTP_FILE_PATH" value="${LOG_PATH}/http/http.log" />  
-           
+     <property name="FILE_PATH" value="${attr}/root/root.log" />   
+     <property name="SERVICE_FILE_PATH" value="${attr}/service/service.log" />  
+     <property name="HTTP_FILE_PATH" value="${attr}/http/http.log" />  
+        
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<pattern>${PATTERN}</pattern>

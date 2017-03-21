@@ -19,8 +19,8 @@ public class TestController {
 	
 	@RequestMapping("getData")
 	String getData() {
-		logger.info("ss:{}","ss");
-		logger.warn("warn:{}","warn");
+		logger.info("controller info :{}","info");
+		logger.warn("controller warn:{}","warn");
 		return service.getData();
 	}
 }
