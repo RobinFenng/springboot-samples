@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: uat
+    
+---
+spring:
+  profiles: test
+
+logging:
+  path: d:/logs/test
+  
+  level:
+    com.moregx.service:  INFO
+---
+spring:
+  profiles: uat
+ 
+logging:
+  path: d:/logs/uat
+  level:
+     com.moregx.service: WARN
+  
+--- 
+spring:
+  profiles: dev
+
+logging:
+  path: d:/logs/dev
+  level:
+    com.moregx.service:  DEBUG
+
+--- 
+spring:
+  profiles: prod
+
+logging:
+  path: d:/logs/prod
+  level:
+    com.moregx.service: ERROR
+  

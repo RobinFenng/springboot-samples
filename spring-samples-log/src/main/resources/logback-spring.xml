@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-    <include resource="org/springframework/boot/logging/logback/base.xml" />
-    <logger name="org.springframework.web" level="INFO"/>
-    <logger name="com.moregx" level="INFO"/>
+<configuration debug="true" scan="true" scanPeriod="30 seconds">
+
+     <property name="PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} [%level] [%class:%line] - %m %n" /> 
+     <property name="FILE_PATH" value="${LOG_PATH}/root/root.log" />   
+     <property name="SERVICE_FILE_PATH" value="${LOG_PATH}/service/service.log" />  
+     <property name="HTTP_FILE_PATH" value="${LOG_PATH}/http/http.log" />  
+           
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${PATTERN}</pattern>
+		</encoder>
+	</appender>
+	<appender name="FILE-OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${FILE_PATH}</file>
+		<encoder>
+			<pattern>${PATTERN}</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/root.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+	
+	<appender name="FILE-SERVICE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${SERVICE_FILE_PATH}</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/service.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    
+
+	<root level="${logging.level.root}">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE-OUT" />
+	</root>
+	
+	 <logger name="com.moregx.service" level="${logging.level.com.moregx.service}">
+	       <appender-ref ref="FILE-SERVICE" />
+	 </logger>
 </configuration>
