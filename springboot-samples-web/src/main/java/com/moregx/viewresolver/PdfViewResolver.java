@@ -5,7 +5,8 @@ import java.util.Locale;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 
-import com.moregx.view.PdfView;
+import com.moregx.viewresolver.view.PdfView;
+
 
 public class PdfViewResolver implements ViewResolver {
 
