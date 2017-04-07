@@ -26,5 +26,6 @@
    	<module>springboot-samples-application-YAML</module>
    	<module>springboot-samples-log</module>
    	<module>springboot-samples-web</module>
+   	<module>springboot-samples-security</module>
    </modules>
 </project>

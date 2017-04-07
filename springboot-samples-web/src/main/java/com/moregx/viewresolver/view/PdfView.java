@@ -12,6 +12,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import com.moregx.model.Apple;
 
 public  class PdfView extends AbstractPdfView {
 
@@ -24,10 +25,13 @@ public  class PdfView extends AbstractPdfView {
 		  table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
 		  table.getDefaultCell().setBackgroundColor(Color.LIGHT_GRAY);
 		  // 这里为了测试，实际应用中，我们从model中读取值
-		  table.addCell("ID");
-		  table.addCell("NAME");
-		  table.addCell("100");
-		  table.addCell("Shanhy");
+		  Apple apple = (Apple)model.get("apple");
+		  
+		  //中文不显示 需要另外处理
+		  table.addCell("name");
+		  table.addCell("color");
+		  table.addCell(apple.getName());
+		  table.addCell(apple.getColor());
 		  document.add(table);
 	}
 

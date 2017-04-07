@@ -1,0 +1,17 @@
+package com.moregx.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/hello")
+public class HelloController {
+
+	
+	
+	@RequestMapping("getData")
+	String getData(){
+		
+		return "success";
+	}
+}
