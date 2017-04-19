@@ -28,5 +28,7 @@
    	<module>springboot-samples-web</module>
    	<module>springboot-samples-security</module>
    	<module>springboot-samples-oauth2</module>
+   	
+   	<module>springboot-samples-redis</module>
    </modules>
 </project>
