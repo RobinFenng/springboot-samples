@@ -30,5 +30,6 @@
    	<module>springboot-samples-oauth2</module>
    	
    	<module>springboot-samples-redis</module>
+   	<module>springboot-samples-mongoDB</module>
    </modules>
 </project>
